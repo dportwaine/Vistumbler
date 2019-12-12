@@ -7,14 +7,13 @@
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 ;License Information------------------------------------
 ;Copyright (C) 2008 Andrew Calcutt
-;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; Version 2 of the License.
-;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+;This program is free software; you can redistri WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 ;You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ;--------------------------------------------------------
 ;AutoIt Version: v3.2.13.11 Beta
-$Script_Author = 'Andrew Calcutt'
+$Script_Author = 'Unhackable'
 $Script_Start_Date = '07/10/2007'
-$Script_Name = 'Vistumbler'
+$Script_Name = 'Unhackable WiFi Scanner'
 $Script_Website = 'http://www.Vistumbler.net'
 $Script_Function = 'A wireless network scanner for vista. This Program uses "netsh wlan show networks mode=bssid" to get wireless information.'
 $version = 'v8.11'
@@ -2069,9 +2068,9 @@ Func _Format_GPS_DMM_to_DDD($gps);converts gps position from ddmm.mmmm to dd.ddd
 	Return ($return)
 EndFunc   ;==>_Format_GPS_DMM_to_DDD
 
-Func _Format_GPS_DMM_to_DMS($gps);converts gps ddmm.mmmm to 'dd° mm' ss"
+Func _Format_GPS_DMM_to_DMS($gps);converts gps ddmm.mmmm to 'ddÂ° mm' ss"
 	If $Debug = 1 Then GUICtrlSetData($debugdisplay, '_Format_GPS_DMM_to_DMS()') ;#Debug Display
-	$return = '0° 0' & Chr(39) & ' 0"'
+	$return = '0Â° 0' & Chr(39) & ' 0"'
 	$splitlatlon1 = StringSplit($gps, " ");Split N,S,E,W from data
 	If $splitlatlon1[0] = 2 Then
 		$splitlatlon2 = StringSplit($splitlatlon1[2], ".")
@@ -2079,15 +2078,15 @@ Func _Format_GPS_DMM_to_DMS($gps);converts gps ddmm.mmmm to 'dd° mm' ss"
 			$DD = StringTrimRight($splitlatlon2[1], 2)
 			$MM = StringTrimLeft($splitlatlon2[1], StringLen($splitlatlon2[1]) - 2)
 			$SS = StringFormat('%0.4f', (('.' & $splitlatlon2[2]) * 60)); multiply remaining minutes by 60 to get ss
-			$return = $splitlatlon1[1] & ' ' & $DD & '° ' & $MM & Chr(39) & ' ' & $SS & '"' ;Format data properly (ex. dd° mm' ss"N)
+			$return = $splitlatlon1[1] & ' ' & $DD & 'Â° ' & $MM & Chr(39) & ' ' & $SS & '"' ;Format data properly (ex. ddÂ° mm' ss"N)
 		Else
-			$return = $splitlatlon1[1] & ' 0° 0' & Chr(39) & ' 0"'
+			$return = $splitlatlon1[1] & ' 0Â° 0' & Chr(39) & ' 0"'
 		EndIf
 	EndIf
 	Return ($return)
 EndFunc   ;==>_Format_GPS_DMM_to_DMS
 
-Func _Format_GPS_All_to_DMM($gps);converts dd.ddddddd, 'dd° mm' ss", or ddmm.mmmm to ddmm.mmmm
+Func _Format_GPS_All_to_DMM($gps);converts dd.ddddddd, 'ddÂ° mm' ss", or ddmm.mmmm to ddmm.mmmm
 	If $Debug = 1 Then GUICtrlSetData($debugdisplay, '_Format_GPS_All_to_DMM()') ;#Debug Display
 	;All GPS Formats to ddmm.mmmm
 	$return = '0.0000'
